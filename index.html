@@ -81,7 +81,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 10px;
             width: 100%;
         }
 
@@ -191,6 +191,7 @@
             </div>
         </div>
         <button onclick="showInvitation()">Invitation</button>
+        <button onclick="openLocation()">Location</button>
     </div>
 
     <div class="cloud cloud1"></div>
@@ -200,7 +201,7 @@
     <div class="popup" id="popup">
         <div class="popup-content">
             <button class="close-button" onclick="closePopup()">&times;</button>
-            <img id="invitation-image" src="Media.jpg" alt="Wedding Invitation">
+            <img id="invitation-image" src="file:///C:/Users/AnanduJayakumar/OneDrive%20-%20Bourntec%20Solutions%20Pvt%20Ltd/Desktop/Namitha/Media.jpg" alt="Wedding Invitation">
         </div>
     </div>
 
@@ -233,6 +234,17 @@
 
         function closePopup() {
             document.getElementById("popup").style.display = "none";
+        }
+
+        function openLocation() {
+            const locationUrl = "https://maps.app.goo.gl/SGMPTZYMQQFKp8zK8";
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                window.location.href = locationUrl;
+            } else {
+                window.open(locationUrl, "_blank");
+            }
         }
     </script>
 </body>
