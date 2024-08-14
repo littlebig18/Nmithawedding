@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namitha's Wedding Countdown</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            color: #2c3e50;
+            flex-direction: column;
+        }
+        .countdown-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            font-size: 2rem;
+            margin-top: 30px;
+        }
+        .time {
+            text-align: center;
+        }
+        .time span {
+            display: block;
+            font-size: 4rem;
+            color: #e74c3c;
+        }
+        .time label {
+            font-size: 1rem;
+            color: #34495e;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #e74c3c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .popup-content img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>Namitha's Wedding Countdown</h1>
+        <div class="countdown" id="countdown">
+            <div class="time">
+                <span id="days"></span>
+                <label>Days</label>
+            </div>
+            <div class="time">
+                <span id="hours"></span>
+                <label>Hours</label>
+            </div>
+            <div class="time">
+                <span id="minutes"></span>
+                <label>Minutes</label>
+            </div>
+            <div class="time">
+                <span id="seconds"></span>
+                <label>Seconds</label>
+            </div>
+        </div>
+        <button onclick="showInvitation()">Invitation</button>
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="close-button" onclick="closePopup()">&times;</button>
+            <img id="invitation-image" src="invitation.jpg" alt="Wedding Invitation">
+        </div>
+    </div>
+
+    <script>
+        const countdownDate = new Date("Sep 5, 2024 10:30:00").getTime();
+
+        const countdownFunction = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "The Wedding is Happening!";
+            }
+        }, 1000);
+
+        function showInvitation() {
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+</body>
+</html>
