@@ -12,40 +12,61 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            background: linear-gradient(to bottom, #87CEEB 0%, #f0f9ff 100%);
             color: #2c3e50;
             flex-direction: column;
+            overflow: hidden;
+            position: relative;
         }
+
+        .sun {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            margin-left: -75px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.7);
+        }
+
         .countdown-container {
             text-align: center;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            z-index: 10;
         }
+
         h1 {
             font-size: 3rem;
             margin-bottom: 20px;
         }
+
         .countdown {
             display: flex;
             justify-content: space-around;
             font-size: 2rem;
             margin-top: 30px;
         }
+
         .time {
             text-align: center;
         }
+
         .time span {
             display: block;
             font-size: 4rem;
             color: #e74c3c;
         }
+
         .time label {
             font-size: 1rem;
             color: #34495e;
         }
+
         button {
             padding: 10px 20px;
             font-size: 1.2rem;
@@ -56,6 +77,43 @@
             cursor: pointer;
             margin-top: 30px;
         }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0px 0px 20px 5px #d3e6f2;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 30px;
+            bottom: 20%;
+            left: -200px;
+            animation: moveClouds 25s linear infinite;
+        }
+
+        .cloud2 {
+            width: 150px;
+            height: 50px;
+            bottom: 30%;
+            left: -300px;
+            animation: moveClouds 30s linear infinite;
+        }
+
+        .cloud3 {
+            width: 80px;
+            height: 20px;
+            bottom: 40%;
+            left: -150px;
+            animation: moveClouds 35s linear infinite;
+        }
+
+        @keyframes moveClouds {
+            from { left: -200px; }
+            to { left: 110%; }
+        }
+
         .popup {
             display: none;
             position: fixed;
@@ -67,16 +125,26 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
         }
+
         .popup-content {
             position: relative;
-            max-width: 80%;
-            max-height: 80%;
-        }
-        .popup-content img {
-            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: auto;
             border-radius: 10px;
         }
+
+        .popup-content img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 100vh;
+            border-radius: 10px;
+        }
+
         .close-button {
             position: absolute;
             top: 10px;
@@ -93,6 +161,8 @@
     </style>
 </head>
 <body>
+    <div class="sun"></div>
+
     <div class="countdown-container">
         <h1>Namitha's Wedding Countdown</h1>
         <div class="countdown" id="countdown">
@@ -116,10 +186,14 @@
         <button onclick="showInvitation()">Invitation</button>
     </div>
 
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
     <div class="popup" id="popup">
         <div class="popup-content">
             <button class="close-button" onclick="closePopup()">&times;</button>
-            <img id="invitation-image" src="invitation.jpg" alt="Wedding Invitation">
+            <img id="invitation-image" src="Media.jpg" alt="Wedding Invitation">
         </div>
     </div>
 
